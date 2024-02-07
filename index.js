@@ -16,11 +16,6 @@ canvas.width = 1024; //parseInt(getComputedStyle(b).width)
 canvas.height = 576; //parseInt(getComputedStyle(b).height)
 
 let startgame = false;
-
-function wait(func, time) {
-    setTimeout(func, time)
-}
-
 const gravity = 0.7;
 class Player {
   constructor() {
@@ -312,7 +307,8 @@ function animate() {
     c.fillStyle = "rgb(0, 0, 0, 0.6)";
     c.fillRect(0, 0, canvas.width, canvas.height);
     document.querySelector("#display").style.display = "block";
-    document.querySelector("#display").innerHTML = "Press ENTER to start the game!!!";
+    document.querySelector("#display").innerHTML =
+      "Press ENTER to start the game!!!";
   }
 
   if (keys.right.pressed && player.position.x < 400) {
@@ -396,16 +392,23 @@ function animate() {
 
   // win condition
   if (scrollOffset > platformImage.width * 9 + 2600 - 3) {
+    player.speed = 0;
     c.fillStyle = "rgb(0, 0, 0, 0.6)";
     c.fillRect(0, 0, canvas.width, canvas.height);
     document.querySelector("#display").style.display = "block";
-    document.querySelector("#display").innerHTML = "You won!!!";
-    // location.reload();
+    document.querySelector("#display").innerText =
+      "You won!!! \nPress ENTER to restart the game!!!";
+    addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        location.reload();
+      }
+    });
   }
 
   // lose condition
   if (player.position.y > canvas.height) location.reload();
 }
+
 
 init();
 animate();
@@ -435,8 +438,8 @@ addEventListener("keydown", (e) => {
       break;
 
     case "Enter":
-        startgame = true
-        document.querySelector("#display").style.display = "none";
+      startgame = true;
+      document.querySelector("#display").style.display = "none";
       break;
   }
 });
