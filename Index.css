@@ -27,5 +27,6 @@ body {
     padding-top: 250px;
     /* display: none; */
     text-align: center;
+    z-index: 1;
     font-family: 'Special Elite', system-ui;
 }
