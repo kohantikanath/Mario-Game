@@ -406,7 +406,10 @@ function animate() {
   }
 
   // lose condition
-  if (player.position.y > canvas.height) location.reload();
+  if (player.position.y > canvas.height) {
+    console.log("jj")
+    location.reload();
+  }
 }
 
 
